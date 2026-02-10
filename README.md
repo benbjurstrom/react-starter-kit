@@ -25,6 +25,16 @@ php artisan install:features
 
 This reads the manifest at `.laravel-installer/manifest.json`, prompts you to select which features to keep, runs the post-install script, then rebuilds npm dependencies and assets.
 
+You can also pass answers non-interactively with the `--answers` flag:
+
+```bash
+php artisan install:features --answers='{"auth_features": ["email-verification"]}'
+```
+
+## CI
+
+The `post-install.yml` workflow runs on every push and PR. It tests all permutations of the post-install options as a matrix — currently the 4 combinations of email verification and 2FA. Each job runs the post-install script with a given set of answers, then runs the full PHPUnit suite to verify nothing is broken.
+
 ## How it works
 
 The `.laravel-installer/` directory contains:
