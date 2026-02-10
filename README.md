@@ -1,25 +1,37 @@
-# Laravel + React Starter Kit
+# React Starter Kit — Post-Install Options
 
-## Introduction
+This branch adds optional post-install customization to the React starter kit. The kit ships with all features enabled, and a post-install script removes anything the user didn't select during `laravel new`.
 
-Our React starter kit provides a robust, modern starting point for building Laravel applications with a React frontend using [Inertia](https://inertiajs.com).
+## Currently supported options
 
-Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+- **Email verification** — `MustVerifyEmail` interface, verify-email page, verification notice component, related tests
+- **Two-factor authentication** — `TwoFactorAuthenticatable` trait, 2FA setup/challenge pages, OTP input, related routes, migrations, and tests
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) and [radix-ui](https://www.radix-ui.com) component libraries.
+## Local setup
 
-## Official Documentation
+```bash
+git clone -b post-install-options https://github.com/benbjurstrom/react-starter-kit.git
+cd react-starter-kit
+composer setup
+```
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+## Testing the post-install script
 
-## Contributing
+The `install:features` artisan command lets you run the post-install flow locally without going through `laravel new`:
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan install:features
+```
 
-## Code of Conduct
+This reads the manifest at `.laravel-installer/manifest.json`, prompts you to select which features to keep, runs the post-install script, then rebuilds npm dependencies and assets.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## How it works
 
-## License
+The `.laravel-installer/` directory contains:
 
-The Laravel + React starter kit is open-sourced software licensed under the MIT license.
+- **`manifest.json`** — Defines the prompts shown to the user. These map to [Laravel Prompts](https://laravel.com/docs/prompts) functions.
+- **`post-install.php`** — The script that modifies the project based on the user's answers. It uses the [installer-tools](https://github.com/benbjurstrom/installer-tools) package.
+
+The approach is subtractive: the scaffold includes all feature code by default, wrapped in block markers like `/* @2fa */` / `/* @end-2fa */`. When a feature is selected, the markers are stripped and the code stays. When a feature is not selected, the markers and the code between them are removed, along with related files, imports, traits, and dependencies.
+
+See the [installer-tools README](https://github.com/benbjurstrom/installer-tools) for the full API reference.

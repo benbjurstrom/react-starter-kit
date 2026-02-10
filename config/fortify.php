@@ -116,7 +116,9 @@ return [
 
     'limiters' => [
         'login' => 'login',
+        /* @2fa */
         'two-factor' => 'two-factor',
+        /* @end-2fa */
     ],
 
     /*
@@ -147,11 +149,13 @@ return [
         Features::registration(),
         Features::resetPasswords(),
         Features::emailVerification(),
+        /* @2fa */
         Features::twoFactorAuthentication([
             'confirm' => true,
             'confirmPassword' => true,
             // 'window' => 0
         ]),
+        /* @end-2fa */
     ],
 
 ];
