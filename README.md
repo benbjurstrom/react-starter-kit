@@ -1,25 +1,21 @@
-# Laravel + React Starter Kit
+# Laravel + React Starter Kit — Passkey Demo
 
-## Introduction
+## Setup
 
-Our React starter kit provides a robust, modern starting point for building Laravel applications with a React frontend using [Inertia](https://inertiajs.com).
+```bash
+git clone https://github.com/laravel/react-starter-kit.git react-starter-kit-passkey-demo
+cd react-starter-kit-passkey-demo
+git checkout fortify-passkeys
+composer setup
+herd link --secure
+```
 
-Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
+> Passkeys require a secure (HTTPS) connection. The `herd link --secure` command provisions a local SSL certificate for your site.
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) and [radix-ui](https://www.radix-ui.com) component libraries.
+## Dependencies
 
-## Official Documentation
+This demo depends on two in-progress branches:
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
-
-## Contributing
-
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## License
-
-The Laravel + React starter kit is open-sourced software licensed under the MIT license.
+- [benbjurstrom/fortify@add-passkey-support](https://github.com/benbjurstrom/fortify/tree/add-passkey-support) — Adds passkey support to Laravel Fortify
+- [laravel/passkeys-server](https://github.com/laravel/passkeys-server) — Server-side passkey (WebAuthn) implementation for Laravel
+- [laravel/passkeys](https://github.com/laravel/passkeys) — Client-side React hooks for passkey authentication
