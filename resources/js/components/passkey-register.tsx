@@ -13,20 +13,18 @@ type Props = {
 export default function PasskeyRegistration({ onSuccess }: Props) {
     const [name, setName] = useState('');
     const [showForm, setShowForm] = useState(false);
-    const { register, isLoading, error, isSupported } = usePasskeyRegister();
+    const { register, isLoading, error, isSupported } = usePasskeyRegister({
+        onSuccess: () => {
+            setName('');
+            setShowForm(false);
+            onSuccess();
+        },
+    });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!name.trim()) return;
-
-        try {
-            await register(name);
-            setName('');
-            setShowForm(false);
-            onSuccess();
-        } catch {
-            // Error is handled by the hook
-        }
+        await register(name);
     };
 
     const handleCancel = () => {
