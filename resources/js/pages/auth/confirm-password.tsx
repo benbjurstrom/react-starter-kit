@@ -6,7 +6,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import AuthLayout from '@/layouts/auth-layout';
-import { confirmOptions, confirm } from '@/routes/passkey';
 import { store } from '@/routes/password/confirm';
 
 export default function ConfirmPassword() {
@@ -20,8 +19,8 @@ export default function ConfirmPassword() {
             {usePage().props.passkeysEnabled && (
                 <PasskeyVerify
                     routes={{
-                        options: confirmOptions.url(),
-                        submit: confirm.url(),
+                        options: '/passkeys/confirm/options',
+                        submit: '/passkeys/confirm',
                     }}
                     label="Confirm with passkey"
                     loadingLabel="Confirming..."

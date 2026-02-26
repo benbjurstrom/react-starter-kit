@@ -5,8 +5,6 @@ import PasskeyItem from '@/components/passkey-item';
 import PasskeyRegistration from '@/components/passkey-register';
 import AppLayout from '@/layouts/app-layout';
 import SettingsLayout from '@/layouts/settings/layout';
-import { destroy } from '@/routes/passkey';
-import { index } from '@/routes/passkeys';
 import type { BreadcrumbItem } from '@/types';
 
 type Passkey = {
@@ -24,7 +22,7 @@ type Props = {
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Passkeys',
-        href: index.url(),
+        href: '/settings/passkeys',
     },
 ];
 
@@ -44,7 +42,7 @@ function EmptyState() {
 
 export default function Passkeys({ passkeys }: Props) {
     const handleDelete = (id: number) => {
-        router.delete(destroy.url({ passkey: id }), {
+        router.delete(`/user/passkeys/${id}`, {
             preserveScroll: true,
         });
     };
