@@ -10,7 +10,7 @@ composer setup
 herd link --secure
 ```
 
-> Passkeys require a HTTPS connection.
+> Passkeys require HTTPS or localhost. Make sure your `APP_URL` in `.env` matches the URL you're using.
 
 ## Configuration
 
