@@ -12,6 +12,10 @@ herd link --secure
 
 > Passkeys require a HTTPS connection.
 
+## Configuration
+
+Passkeys can be toggled via the `Features::passkeys()` entry in `config/fortify.php`. All passkey UI elements are conditionally rendered based on this setting.
+
 ## Dependencies
 
 This demo depends on several unpublished repos:
