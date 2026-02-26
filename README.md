@@ -10,12 +10,12 @@ composer setup
 herd link --secure
 ```
 
-> Passkeys require a secure (HTTPS) connection. The `herd link --secure` command provisions a local SSL certificate for your site.
+> Passkeys require a HTTPS connection.
 
 ## Dependencies
 
-This demo depends on two in-progress branches:
+This demo depends on several unpublished repos:
 
 - [benbjurstrom/fortify@add-passkey-support](https://github.com/benbjurstrom/fortify/tree/add-passkey-support) — Adds passkey support to Laravel Fortify
-- [laravel/passkeys-server](https://github.com/laravel/passkeys-server) — Server-side passkey (WebAuthn) implementation for Laravel
-- [laravel/passkeys](https://github.com/laravel/passkeys) — Client-side React hooks for passkey authentication
+- [laravel/passkeys-server](https://github.com/laravel/passkeys-server) — Server-side passkey implementation for Laravel
+- [laravel/passkeys](https://github.com/laravel/passkeys) — Client-side helpers
