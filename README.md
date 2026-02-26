@@ -3,7 +3,7 @@
 ## Setup
 
 ```bash
-git clone https://github.com/laravel/react-starter-kit.git react-starter-kit-passkey-demo
+git clone https://github.com/benbjurstrom/react-starter-kit.git react-starter-kit-passkey-demo
 cd react-starter-kit-passkey-demo
 git checkout fortify-passkeys
 composer setup
