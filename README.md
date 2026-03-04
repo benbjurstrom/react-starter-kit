@@ -23,7 +23,7 @@ The `install:features` artisan command lets you run the post-install flow locall
 php artisan install:features
 ```
 
-This reads the manifest at `.laravel-installer/manifest.json`, prompts you to select which features to keep, runs the post-install script, then rebuilds npm dependencies and assets.
+This runs the post-install script which prompts you to select which features to keep, then rebuilds npm dependencies and assets.
 
 You can also pass answers non-interactively with the `--answers` flag:
 
@@ -37,10 +37,7 @@ The `post-install.yml` workflow runs on every push and PR. It tests all permutat
 
 ## How it works
 
-The `.laravel-installer/` directory contains:
-
-- **`manifest.json`** — Defines the prompts shown to the user. These map to [Laravel Prompts](https://laravel.com/docs/prompts) functions.
-- **`post-install.php`** — The script that modifies the project based on the user's answers. It uses the [installer-tools](https://github.com/benbjurstrom/installer-tools) package.
+The `.laravel-installer/` directory contains a single `post-install.php` script. It prompts the user for their preferences using [Laravel Prompts](https://laravel.com/docs/prompts), then modifies the project accordingly using the [installer-tools](https://github.com/benbjurstrom/installer-tools) package.
 
 The approach is subtractive: the scaffold includes all feature code by default, wrapped in block markers like `/* @2fa */` / `/* @end-2fa */`. When a feature is selected, the markers are stripped and the code stays. When a feature is not selected, the markers and the code between them are removed, along with related files, imports, traits, and dependencies.
 
