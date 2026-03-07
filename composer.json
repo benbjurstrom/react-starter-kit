@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "laravel/installer-tools": "dev-main",
+        "laravel/chisel": "dev-main",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",
@@ -105,9 +105,8 @@
     "prefer-stable": true,
     "repositories": [
         {
-            "name": "installer-tools",
-            "type": "vcs",
-            "url": "https://github.com/benbjurstrom/installer-tools"
+            "type": "path",
+            "url": "/Volumes/code/installer-tools"
         },
         {
             "type": "vcs",

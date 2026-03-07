@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
@@ -31,6 +31,13 @@ const sidebarNavItems: NavItem[] = [
         icon: null,
     },
     /* @end-2fa */
+    /* @passkeys */
+    {
+        title: 'Passkeys',
+        href: '/settings/passkeys',
+        icon: null,
+    },
+    /* @end-passkeys */
     {
         title: 'Appearance',
         href: editAppearance(),
@@ -38,19 +45,8 @@ const sidebarNavItems: NavItem[] = [
     },
 ];
 
-const passkeysNavItem: NavItem = {
-    title: 'Passkeys',
-    href: '/settings/passkeys',
-    icon: null,
-};
-
 export default function SettingsLayout({ children }: PropsWithChildren) {
     const { isCurrentUrl } = useCurrentUrl();
-    const { passkeysEnabled } = usePage().props;
-
-    const navItems = passkeysEnabled
-        ? [...sidebarNavItems.slice(0, 3), passkeysNavItem, ...sidebarNavItems.slice(3)]
-        : sidebarNavItems;
 
     // When server-side rendering, we only render the layout on the client...
     if (typeof window === 'undefined') {
@@ -70,7 +66,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                         className="flex flex-col space-y-1 space-x-0"
                         aria-label="Settings"
                     >
-                        {navItems.map((item, index) => (
+                        {sidebarNavItems.map((item, index) => (
                             <Button
                                 key={`${toUrl(item.href)}-${index}`}
                                 size="sm"

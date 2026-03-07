@@ -1,6 +1,8 @@
-import { Form, Head, usePage } from '@inertiajs/react';
+import { Form, Head } from '@inertiajs/react';
 import InputError from '@/components/input-error';
+/* @passkeys */
 import PasskeyVerify from '@/components/passkey-verify';
+/* @end-passkeys */
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,17 +18,17 @@ export default function ConfirmPassword() {
         >
             <Head title="Confirm password" />
 
-            {usePage().props.passkeysEnabled && (
-                <PasskeyVerify
-                    routes={{
-                        options: '/passkeys/confirm/options',
-                        submit: '/passkeys/confirm',
-                    }}
-                    label="Confirm with passkey"
-                    loadingLabel="Confirming..."
-                    separator="Or confirm with password"
-                />
-            )}
+            {/* @passkeys */}
+            <PasskeyVerify
+                routes={{
+                    options: '/passkeys/confirm/options',
+                    submit: '/passkeys/confirm',
+                }}
+                label="Confirm with passkey"
+                loadingLabel="Confirming..."
+                separator="Or confirm with password"
+            />
+            {/* @end-passkeys */}
 
             <Form {...store.form()} resetOnSuccess={['password']}>
                 {({ processing, errors }) => (

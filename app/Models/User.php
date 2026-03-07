@@ -33,8 +33,10 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
      */
     protected $hidden = [
         'password',
+        /* @2fa */
         'two_factor_secret',
         'two_factor_recovery_codes',
+        /* @end-2fa */
         'remember_token',
     ];
 
@@ -48,7 +50,9 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            /* @2fa */
             'two_factor_confirmed_at' => 'datetime',
+            /* @end-2fa */
         ];
     }
 }

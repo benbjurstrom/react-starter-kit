@@ -1,6 +1,8 @@
-import { Form, Head, usePage } from '@inertiajs/react';
+import { Form, Head } from '@inertiajs/react';
 import InputError from '@/components/input-error';
+/* @passkeys */
 import PasskeyVerify from '@/components/passkey-verify';
+/* @end-passkeys */
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -30,7 +32,9 @@ export default function Login({
         >
             <Head title="Log in" />
 
-            {usePage().props.passkeysEnabled && <PasskeyVerify />}
+            {/* @passkeys */}
+            <PasskeyVerify />
+            {/* @end-passkeys */}
 
             <Form
                 {...store.form()}

@@ -118,8 +118,10 @@ return [
         'login' => 'login',
         /* @2fa */
         'two-factor' => 'two-factor',
-        'passkeys' => 'passkeys',
         /* @end-2fa */
+        /* @passkeys */
+        'passkeys' => 'passkeys',
+        /* @end-passkeys */
     ],
 
     /*
@@ -135,6 +137,7 @@ return [
 
     'views' => true,
 
+    /* @passkeys */
     /*
     |--------------------------------------------------------------------------
     | Passkeys
@@ -148,6 +151,7 @@ return [
         'relying_party_id' => parse_url(config('app.url'), PHP_URL_HOST),
         'timeout' => 60000,
     ],
+    /* @end-passkeys */
 
     /*
     |--------------------------------------------------------------------------
@@ -170,10 +174,12 @@ return [
             'confirmPassword' => true,
             // 'window' => 0,
         ]),
+        /* @end-2fa */
+        /* @passkeys */
         Features::passkeys([
             'confirmPassword' => true,
         ]),
-        /* @end-2fa */
+        /* @end-passkeys */
     ],
 
 ];
